@@ -3,20 +3,20 @@ package com.prepcoding.ds.level1.basic;
 import java.util.Scanner;
 
 /*
- * Count Digits In A Number
+ * Reverse A Number
  */
 
-public class CountingDigitsInNumberDemo {
+public class ReverseANumberDemo {
 
 	public static void main(String[] args) {
 		Scanner scan = new Scanner(System.in);
 		int input = scan.nextInt();
-		int digitCount = 0;
+		
 		while(input != 0) {
-			digitCount++;
-			input = input/10;
+			int rem = input % 10;
+			System.out.println(rem);
+			input = input / 10;
 		}
-		System.out.println(digitCount);
 		scan.close();
 	}
 

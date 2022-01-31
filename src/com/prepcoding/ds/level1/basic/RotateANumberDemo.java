@@ -18,43 +18,50 @@ public class RotateANumberDemo {
 		Scanner scan = new Scanner(System.in);
 		int n = scan.nextInt();
 		int k = scan.nextInt();
-		
+
 		int temp = n;
 		int digitCount = 0;
-		while(temp != 0) {
+		while (temp != 0) {
 			digitCount++;
-			temp = temp/10;
+			temp = temp / 10;
 		}
 		k = k % digitCount;
-		rotateTheNumber(n, k, digitCount);
+		// rotateTheNumber(n, k, digitCount);
+		rotateTheNumberNew(n, k, digitCount);
 		scan.close();
 	}
 
 	private static void rotateTheNumber(int n, int k, int digitCount) {
 		int ans = n;
-		if(k > 0) {
+		if (k > 0) {
 			int staticPart = n / (int) Math.pow(10, k);
 			int rotatingPart = n % (int) Math.pow(10, k);
 			ans = rotatingPart * (int) Math.pow(10, digitCount - k) + staticPart;
-		} else if(k < 0) {
+		} else if (k < 0) {
 			int staticPart = n % (int) Math.pow(10, digitCount + k);
 			int rotatingPart = n / (int) Math.pow(10, digitCount + k);
-			ans = staticPart * (int) Math.pow(10,-k) + rotatingPart;
+			ans = staticPart * (int) Math.pow(10, -k) + rotatingPart;
 		}
 		System.out.println(ans);
 	}
-	
+
 	private static void rotateTheNumberNew(int n, int k, int digitCount) {
-		int ans = n;
-		if(k > 0) {
-			int staticPart = n / (int) Math.pow(10, k);
-			int rotatingPart = n % (int) Math.pow(10, k);
-			ans = rotatingPart * (int) Math.pow(10, digitCount - k) + staticPart;
-		} else if(k < 0) {
-			int staticPart = n % (int) Math.pow(10, digitCount + k);
-			int rotatingPart = n / (int) Math.pow(10, digitCount + k);
-			ans = staticPart * (int) Math.pow(10,-k) + rotatingPart;
+		if (k < 0) {
+			k = k + digitCount;
 		}
+		int div = 1;
+		int mult = 1;
+		for (int i = 1; i <= digitCount; i++) {
+			if (i <= k) {
+				div = div * 10;
+			} else {
+				mult = mult * 10;
+			}
+		}
+		int quo = n / div;
+		int rem = n % div;
+
+		int ans = rem * mult + quo;
 		System.out.println(ans);
 	}
 

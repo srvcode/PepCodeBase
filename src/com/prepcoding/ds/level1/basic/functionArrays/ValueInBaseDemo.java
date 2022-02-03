@@ -36,7 +36,6 @@ public class ValueInBaseDemo {
 			n = n / b;
 		}
 		return ans;
-		
 	}
 
 }
